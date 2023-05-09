@@ -2,7 +2,7 @@
 const express = require('express');
 const {
     validateActionText,
-    validateCompleted,
+    validateActionCompleted,
     validateActionId
 } = require('../actions/actions-middlware');
 
@@ -46,15 +46,15 @@ router.post ('/', validateActionText, (req, res, next) => {
         .catch(next)
 });
 
-router.put ('/:id', validateCompleted, (req, res, next) => {
+router.put ('/:id', validateActionText, (req, res, next) => {
     Action.update(req.params.id, {
         description: req.body.description,
         notes: req.body.notes,
         project_id: req.body.project_id,
-        completed: req.completed
+        completed: req.body.completed
     })
-        .then(updated => {
-            res.status(200).json(updated)
+        .then(updatedAction => {
+            res.status(200).json(updatedAction)
         })
         .catch(next)
 });

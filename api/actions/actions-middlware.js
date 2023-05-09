@@ -41,7 +41,7 @@ function validateActionText (req, res, next) {
 }
 
 
-function validateCompleted (req, res, next) {
+function validateActionCompleted (req, res, next) {
     const { notes, project_id, description, completed } = req.body;
     if ( notes && description &&
          (completed === true || completed === false)  
@@ -62,6 +62,6 @@ function validateCompleted (req, res, next) {
 module.exports = {
     validateActionId,
     validateActionText,
-    validateCompleted
+    validateActionCompleted
 }
 
