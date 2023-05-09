@@ -22,7 +22,6 @@ async function validateProjectId (req, res, next) {
 }
 
 function validateText (req, res, next) {
-    // try {
     const { name, description, completed } = req.body;
     if ( !name || !description ||
          !name.trim() || !description.trim()  
@@ -30,7 +29,6 @@ function validateText (req, res, next) {
         res.status(400).json({
             message: 'missing required text field'
         })
-        // next()
     }
     else {
         req.name = name.trim()
@@ -38,13 +36,9 @@ function validateText (req, res, next) {
         req.completed = completed
         next()
     }
-// } catch (err) {
-    // res.status(500).json(err)
 }
-// }
 
 function validateCompleted (req, res, next) {
-    // try {
     const { name, description, completed } = req.body;
     if ( name && description &&
          (completed === true || completed === false)  
@@ -58,10 +52,7 @@ function validateCompleted (req, res, next) {
         res.status(400).json({
             message: 'missing required text field'
         })
-        // next()
     }
-// } catch (err) {
-    // res.status(500).json(err)
 }
 
 module.exports = {
